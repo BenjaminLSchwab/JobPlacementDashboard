@@ -1,0 +1,54 @@
+﻿@model IEnumerable<JobPlacementDashboard.Models.JPNotification>
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<div class="container">
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container">
+    <div class="col-sm-12">
+        <table class="table col-12">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Graduate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hire)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotificationDate)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Graduate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hire)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotificationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.NotificationId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.NotificationId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.NotificationId })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    
+</div>
+   
+</div>
+

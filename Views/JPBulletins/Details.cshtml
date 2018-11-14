@@ -1,0 +1,42 @@
+﻿@model JobPlacementDashboard.Models.JPBulletin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JPBulletin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BulletinBody)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BulletinBody)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BulletinCategoryEnum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BulletinCategoryEnum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BulletinDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BulletinDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BulletinId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="Tech Academy’s programming bootcamp teaches students coding through real-world, hands-on software development training to code on the front-end & back-end." />
+    <meta name="keywords" content="Codeschool,the tech academy,coding academy,coding classes,code bootcamp,best way to learn coding,coding classes online,coding boot camp,tech academy,software development training,computer programming school,learn coding from scratch" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Bootcamp | Codeschool | The Tech Academy</title>
+    @Styles.Render("~/bundles/content")
+    <link href="~/Content/jobboard.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <!--Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300,700,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!--ion-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/ico" href="~/images/favicon.ico">
+
+</head>
+<body>
+
+    <div class="loader-backdrop">
+        <!-- Loader -->
+        <div class="loader">
+            <div class="ball-1"></div>
+            <div class="ball-2"></div>
+        </div>
+    </div>
+
+    <header>
+        <!-- Header = Topbar + Navigation Bar -->
+        <div class="topbar">
+            <!-- Dark Blue Topbar -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="tel:503.206.6915" class="call-us"><i class="fa fa-phone"></i> 503.206.6915</a>          <!-- Change Phone Number Here -->
+                    </div>
+                    <div class="col-sm-6">
+                        <form class="search form-inline">
+                            <!-- Search Form -->
+                            <input type="text" class="form-control" placeholder="Start typing...">
+                            <button class="btn-search" type="submit"><i class="fa fa-search fa-fw"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default @RenderSection("addNavClass", required:false)" id="dark-background-navbar">
+            <!-- Navigation Bar -->
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation" aria-expanded="false" id="menu-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span>Menu</span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/images/tech_logo/The Tech Academy Logo.png" alt=""></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <!-- Main Menu -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        
+                        <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+
+
+                        <!-- new Job Placement List-->
+                        <li id="JPDropDown">
+                            <a href="#">Job Placement</a>
+                            <ul class="sub-menu">
+                                <li class="job-placement-dropdown-item">Student Dashboard</li>
+                                <li class="JPDropDown">@Html.ActionLink("Home", "Analytics", "Analytics")</li>
+                                <li class="JPDropDown">@Html.ActionLink("Create an Account", "Create", "JPStudents")</li>
+                                <li class="JPDropDown">
+                                    <a id="makeOpaque" href="#">Log Data</a>
+                                    <ul class="sub-menu">
+                                        <li class="JPDropDown">@Html.ActionLink("Applications", "Create", "JPApplications")</li>
+                                        <li class="JPDropDown">@Html.ActionLink("Offer", "Create", "JPHires")</li>
+                                    </ul>
+                                </li>
+                                <li class="JPDropDown">@Html.ActionLink("Networking", "Networking", "Networking")</li>
+                                <li class="JPDropDown">@Html.ActionLink("Bulletin", "Index", "JPBulletins")</li>
+                                <li class="JPDropDown">@Html.ActionLink("My Applications", "StudentIndex", "JPApplications")</li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    var notes = Startup.getNotifications();     
+                                    <li class="job-placement-dropdown-item">Job Placement Dashboard</li>
+                                    <li class="JPDropDown">@Html.ActionLink("Students", "Index", "JPStudentRundown")</li>
+                                    <li class="JPDropDown">@Html.ActionLink("Applications", "Index", "JPApplications")</li>
+                                    <li class="JPDropDown">@Html.ActionLink("Hires", "Index", "JPHires")</li>
+                                    <li class="JPDropDown">@Html.ActionLink("Bulletin", "Create", "JPBulletins")</li>
+                                    <li class="JPDropDown">@Html.ActionLink("Snapshot", "Snapshot", "SnapshotViewModel")</li>
+                                    <li class="JPDropDown">@Html.ActionLink("Updates (" +notes +")", "Update", "JPNotifications")</li>
+                                    
+                                }
+
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @Html.Partial("_LoginPartial")
+
+                </div>
+               
+            </div>
+        </nav>
+    </header>
+    <div class="pt-80">
+    @RenderBody()
+    </div>
+    <footer class="footer">
+        <!-- Footer -->
+        <div class="footer-pri">
+            <!-- Primary Footer -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4 footer-widget">
+                        <!-- Footer Widget - Blog -->
+                        <h5 class="heading inverse">Recent <span class="color2">Blog</span></h5>
+                        <ul class="blog-thumbnail">
+                            <li class="entry">
+                                <!-- Blog Entry Excerpt -->
+                                <div class="entry-content">
+                                    <h4 class="entry-header"><a href="http://www.learncodinganywhere.com/the-tech-academy-blog/#">Imposter Syndrome with Dan Linn</a></h4>
+                                    <p class="entry-text">The “imposties”, as Linn calls them, is something that happens to everyone. In and outside of the Tech world.</p>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <!-- Blog Entry Excerpt -->
+                                <div class="entry-content">
+                                    <h4 class="entry-header"><a href="http://www.learncodinganywhere.com/the-tech-academy-blog/#">Learning C# at The Tech Academy</a></h4>
+                                    <p class="entry-text">In doing my final exercise, I made the front-end for a database come to life! In fact, I started a project that I’ll be working on for some time, as it has huge use to me personally (an index for all the DVDs in my house)!</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 footer-widget">
+                        <!-- Footer Widget - Quick Links -->
+                        <h5 class="heading inverse">Quick <span class="color2">Links</span></h5>
+                        <ul class="quick-links">
+                            <li><a href='@Url.Action("About", "Home")'>About The Tech Academy</a></li>
+                            <li><a href='@Url.Action("Index", "CourseOverViews")'>Our Courses</a></li>
+                            <li><a href='@Url.Action("Index", "Staff")'>Our Staff</a></li>
+                            <li><a href='@Url.Action("Contact", "Home")'>Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 footer-widget">
+                        <!-- Footer Widget - Affiliations -->
+                        <h5 class="heading inverse">Our <span class="color2">Affiliations</span></h5>
+                        <ul class="affiliations">
+                            <li><img src="~/images/footer/Affilations-logo.png" class="img-responsive" alt=""></li> <!--200 x 50 -->
+                            <li><img src="~/images/footer/ODE_logo_slide_6.jpg" class="img-responsive" alt=""></li> <!--200 x 50 -->
+                            <li><img src="~/images/footer/trainingindustry.png" class="img-responsive" alt=""></li> <!--200 x 50 -->
+                            <li><img src="~/images/footer/courseReport.png" class="img-responsive" alt=""></li> <!--200 x 50 -->
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-4 footer-widget">
+                        <!-- Footer Widget - Contact Info -->
+                        <h5 class="heading inverse">Contact  <span class="color2">Us</span></h5>
+                        <address>
+                            <strong>The Tech Academy</strong>
+                            <span>310 SW 4th Ave Suite 412,<br /> Portland, OR 97204,<br /> United States</span>
+                        </address>
+                        <a href="tel:503.206.6915" class="phone"><i class="fa fa-phone fa-fw"></i> 503.206.6915</a>
+                        <a href="mailto:info@learncodinganywhere.com" class="email"><i class="fa fa-envelope fa-fw"></i> info@learncodinganywhere.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-sec">
+            <!-- Secondary Footer -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <span class="copyright">&copy; Copyright The Tech Academy 2017</span>           <!-- Copyright Text -->
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <ul class="social">
+                            <!-- Social Media Links -->
+                            <li><a href="https://www.facebook.com/learncodinganywhere/?ref=aymt_homepage_panel" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/thetechacad" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.pinterest.com/TheTechAcademy/" target="_blank"><i class="fa fa-pinterest-p"></i></a></li>
+                            <li><a href="https://www.linkedin.com/school/3685017?pathWildcard=3685017" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://www.instagram.com/thetechacademy/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://plus.google.com/b/108407477315781502466/+TheTechAcademyLearnCoding" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="@Url.Action("Blog", "Home")"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="@Url.Action("Terms", "Home")"><i class="fa fa-check"></i></a></li>
+                            <li><a href="@Url.Action("Privacy", "Home")"><i class="fa fa-user-secret"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="back"><i class="fa fa-angle-up"></i></div>     <!-- Back To Top -->
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <!--Script for menu toggle-->
+    <script type="text/javascript">
+        $(function () {
+            var menuToggle = document.getElementById('menu-toggle');
+
+            $(menuToggle).click(function () {
+                $(this).toggleClass('is-active');
+            })
+        })
+    </script>
+
+
+</body>
+</html>

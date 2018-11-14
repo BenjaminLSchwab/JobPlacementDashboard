@@ -1,0 +1,72 @@
+﻿@model JobPlacementDashboard.Models.JPApplication
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>JPApplication</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPJobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPJobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPJobCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPJobCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPApplicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPApplicationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

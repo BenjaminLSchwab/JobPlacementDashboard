@@ -1,0 +1,69 @@
+﻿@model IEnumerable<JobPlacementDashboard.Models.JPChecklist>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" align="center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JPBusinessCards)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JPMeetups)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JPUpdatedLinkedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JPUpdatedPortfolioSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JPCleanGitHub)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JpRoundTables)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JPBusinessCards)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JPMeetups)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JPUpdatedLinkedIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JPUpdatedPortfolioSite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JPCleanGitHub)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JpRoundTables)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JPChecklistid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JPChecklistid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JPChecklistid })
+        </td>
+    </tr>
+}
+
+</table>

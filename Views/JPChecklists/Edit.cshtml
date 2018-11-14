@@ -1,0 +1,88 @@
+﻿@model JobPlacementDashboard.Models.JPChecklist
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+
+    <h4>JPChecklist</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.JPChecklistid)
+    @Html.HiddenFor(model => model.ApplicationUserid)
+    <div class="card col-12 noshadow shadow-none">
+       <div class="card-body col-12 text-center noshadow shadow-none">
+          <form>
+              <div class="form-group center-block">
+                  <div class="form-group mychecklist col-12 text-left" @*style="float:left"*@>
+                      @*<label for="inputFirstName" class="mychecklistItems">Name</label>*@
+                      @*@Html.LabelFor(model => model.ApplicationUserid, "ApplicationUserid", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @*@Html.EditorFor(model => model.ApplicationUserid)*@ @*PB - Changed from a Pull-down to an EditFor as there is only one arg *@
+                  </div>
+
+                  <div class="form-group mychecklist checkbox col-12 text-left">
+                      @*@Html.LabelFor(model => model.JPBusinessCards, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @Html.EditorFor(model => model.JPBusinessCards)
+                      @Html.ValidationMessageFor(model => model.JPBusinessCards, "", new { @class = "text-danger" })
+                      <label for="inputLastName" class="mychecklistItems">Business Cards</label> 
+                  </div>
+
+                  <div class="form-group mychecklist checkbox col-12 text-left">
+                      @*@Html.LabelFor(model => model.JPMeetups, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @Html.EditorFor(model => model.JPMeetups)
+                      @Html.ValidationMessageFor(model => model.JPMeetups, "", new { @class = "text-danger" })
+                      <label for="inputLastName" class="mychecklistItems">Meetups</label>
+                  </div>
+
+                  <div class="form-group mychecklist checkbox col-12 text-left">
+                      @*@Html.LabelFor(model => model.JPUpdatedLinkedIn, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @Html.EditorFor(model => model.JPUpdatedLinkedIn)
+                      @Html.ValidationMessageFor(model => model.JPUpdatedLinkedIn, "", new { @class = "text-danger" })
+                      <label for="inputLastName" class="mychecklistItems">Updated LinkedIn</label>
+                  </div>
+
+                  <div class="form-group mychecklist checkbox col-12 text-left">
+                      @*@Html.LabelFor(model => model.JPUpdatedPortfolioSite, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @Html.EditorFor(model => model.JPUpdatedPortfolioSite)
+                      @Html.ValidationMessageFor(model => model.JPUpdatedPortfolioSite, "", new { @class = "text-danger" })
+                      <label for="inputLastName" class="mychecklistItems">Updated Portfolio Site</label>
+                  </div>
+
+                  <div class="form-group mychecklist checkbox col-12 text-left">
+                      @*@Html.LabelFor(model => model.JPCleanGitHub, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @Html.EditorFor(model => model.JPCleanGitHub)
+                      @Html.ValidationMessageFor(model => model.JPCleanGitHub, "", new { @class = "text-danger" })
+                      <label for="inputLastName" class="mychecklistItems">Clean GitHub</label>
+                  </div>
+
+                  <div class="form-group mychecklist checkbox col-12 text-left">
+                      @*@Html.LabelFor(model => model.JpRoundTables, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                      @Html.EditorFor(model => model.JpRoundTables)
+                      @Html.ValidationMessageFor(model => model.JpRoundTables, "", new { @class = "text-danger" })
+                      <label for="inputLastName" class="mychecklistItems">Round Tables</label>
+                  </div>
+              </div>
+          </form>
+       </div>
+     
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default"/>
+                
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

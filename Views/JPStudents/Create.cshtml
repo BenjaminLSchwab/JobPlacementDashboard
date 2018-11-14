@@ -1,0 +1,105 @@
+﻿@model JobPlacementDashboard.Models.JPStudent
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>JPStudent</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group"  id="inline1">
+        @Html.LabelFor(model => model.JPName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JPName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JPName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group"  id="inline1">
+        @Html.LabelFor(model => model.JPEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JPEmail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JPEmail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="inline1">
+        @Html.LabelFor(model => model.JPStudentLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.JPStudentLocation, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.JPStudentLocation, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="inline1">
+        @Html.LabelFor(model => model.JPLinkedIn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JPLinkedIn, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JPLinkedIn, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="inline1">
+        @Html.LabelFor(model => model.JPPortfolio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JPPortfolio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JPPortfolio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="inline1">
+        @Html.LabelFor(model => model.JPGithubLink, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JPGithubLink, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JPGithubLink, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" id="inline1">
+        @Html.LabelFor(model => model.JPContact, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox" id="check">
+                <span>
+                    @Html.CheckBoxFor(model => model.JPContact) Are you open to being contacted by other students of the Tech Academy after you get hired for purposes of networking?
+                </span>
+                @Html.ValidationMessageFor(model => model.JPContact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="http://localhost:51507/Account/Register">You must be registered and logged in before you can create a new student.</a>
+            </div>
+        </div>
+    }
+
+
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

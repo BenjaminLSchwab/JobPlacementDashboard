@@ -1,0 +1,66 @@
+﻿@model JobPlacementDashboard.Models.JPApplication
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JPApplication</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPJobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPJobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPJobCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPJobCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPCompanyState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPCompanyState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPApplicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPApplicationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JPAppId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

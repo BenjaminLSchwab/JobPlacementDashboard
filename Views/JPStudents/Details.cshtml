@@ -1,0 +1,90 @@
+﻿@model JobPlacementDashboard.Models.JPStudent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JPStudent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JPName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPStudentLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPStudentLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPLinkedIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPLinkedIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPPortfolio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPPortfolio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPGraduated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPGraduated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JPHired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JPHired)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JPStudentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

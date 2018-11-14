@@ -1,0 +1,454 @@
+﻿
+@model JobPlacementDashboard.ViewModels.SnapshotViewModel
+
+@{
+    ViewBag.Title = "Snapshot";
+
+}
+
+
+<h2 class="snapshotMainHeading">Snapshot</h2>
+
+
+
+<div class="container">
+    <div class="col-sm-12">
+        <h3 class="snapshotHeaders">Stats Overview</h3>
+        <table class="table margin10" id="tablestuff2">
+            <tr>
+                <th></th>
+                <th class="col-md-4">
+                    Portland
+                </th>
+                <th></th>
+                <th class="col-md-4">
+                    Denver
+                </th>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.TotalWeeklyApplications_Portland)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyApplications_Portland)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TotalWeeklyApplications_Denver)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyApplications_Denver)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.TotalWeeklyHires_Portland)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyHires_Portland)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TotalWeeklyHires_Denver)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyHires_Denver)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.TotalStudents_Portland)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalStudents_Portland)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TotalStudents_Denver)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalStudents_Denver)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.UnhiredGraduates_Portland)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UnhiredGraduates_Portland)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.UnhiredGraduates_Denver)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UnhiredGraduates_Denver)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.PortlandAvgDaysInJP)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PortlandAvgDaysInJP)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DenverAvgDaysInJP)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.DenverAvgDaysInJP)
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+</div>
+
+<div class="container">
+    <div class="col-sm-12">
+        <table class="table margin10" id="tablestuff">
+            <tr>
+                <th></th>
+                <th class="col-md-4">
+                    Seattle
+                </th>
+                <th></th>
+                <th class="col-md-4">
+                    Remote
+                </th>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.TotalWeeklyApplications_Seattle)
+                </td>
+                <td class="ml-5">
+                    @Html.DisplayFor(model => model.TotalWeeklyApplications_Seattle)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TotalWeeklyApplications_Remote)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyApplications_Remote)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.TotalWeeklyHires_Seattle)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyHires_Seattle)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TotalWeeklyHires_Remote)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalWeeklyHires_Remote)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.TotalStudents_Seattle)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalStudents_Seattle)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.TotalStudents_Remote)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalStudents_Remote)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.UnhiredGraduates_Seattle)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UnhiredGraduates_Seattle)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.UnhiredGraduates_Remote)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UnhiredGraduates_Remote)
+                </td>
+            </tr>
+
+            <tr class="text-md-center">
+                <td></td>
+                <td class="col-md-4">
+                    @Html.LabelFor(model => model.SeattleAvgDaysInJP)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.SeattleAvgDaysInJP)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.RemoteAvgDaysInJP)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.RemoteAvgDaysInJP)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="snapshotHeaders">Weekly Hires</h3>
+        <table class="table margin10">
+            <tr>
+                <th></th>
+                <th class="auto-style3">
+                    First Name
+                </th>
+                <th class="auto-style2">
+                    Last Name
+                </th>
+                <th class="auto-style2">
+                    Student Location
+                </th>
+                <th class="auto-style2">
+                    Job Title
+                </th>
+                <th class="auto-style2">
+                    Company Name
+                </th>
+                <th class="auto-style2">
+                    Hire Date
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.WeeklyHires)
+            {
+                <tr class="text-center">
+                    <td></td>
+                    <td class="auto-style3">
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPStudentLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPJobTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPCompanyName)
+                    </td>
+                    <td>
+
+                        @item.JPHireDate.ToShortDateString()
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="col-sm-12">
+        <h3 class="snapshotHeaders">Monthly Hires</h3>
+        <table class="table margin10">
+            <tr>
+                <th></th>
+                <th class="auto-style3">
+                    First Name
+                </th>
+                <th class="auto-style2">
+                    Last Name
+                </th>
+                <th class="auto-style2">
+                    Student Location
+                </th>
+                <th class="auto-style2">
+                    Job Title
+                </th>
+                <th class="auto-style2">
+                    Company Name
+                </th>
+                <th class="auto-style2">
+                    Hire Date
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.MonthlyHires)
+            {
+                <tr class="text-center">
+                    <td></td>
+                    <td class="auto-style3">
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPStudentLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPJobTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPCompanyName)
+                    </td>
+                    <td>
+
+                        @item.JPHireDate.ToShortDateString()
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-sm-12">
+        <h3 class="snapshotHeaders">Yearly Hires</h3>
+        <table class="table margin10">
+            <tr>
+                <th></th>
+                <th class="auto-style3">
+                    First Name
+                </th>
+                <th class="auto-style2">
+                    Last Name
+                </th>
+                <th class="auto-style2">
+                    Student Location
+                </th>
+                <th class="auto-style2">
+                    Job Title
+                </th>
+                <th class="auto-style2">
+                    Company Name
+                </th>
+                <th class="auto-style2">
+                    Hire Date
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.YearlyHires)
+            {
+                <tr class="text-center">
+                    <td></td>
+                    <td class="auto-style3">
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPStudentLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPJobTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPCompanyName)
+                    </td>
+                    <td>
+
+                        @item.JPHireDate.ToShortDateString()
+                    </td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Export Student Email Addresses", "ExportCSV", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-sm-12">
+        <h3 class="snapshotHeaders">Job Placement</h3>
+        <table class="table margin10">
+            <tr>
+                <th></th>
+                <th class="auto-style3">
+                    Average Days per Student
+                </th>
+                <th></th>
+            </tr>
+            <tr class="text-center">
+                <td></td>
+                <td class="auto-style3">
+                    @Html.DisplayFor(model => model.AvgDaysInJP)
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h3 class="snapshotHeaders">New Students</h3>
+    <div class="col-sm-12">
+        <table class="table margin10">
+            <tr>
+                <th></th>
+                <th class="auto-style3">
+                    Student Name
+                </th>
+                <th class="auto-style2">
+                    Start Date
+                </th>
+                <th class="auto-style2">
+                    Location
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.NewStudents)
+            {
+                <tr class="text-center">
+                    <td></td>
+                    <td class="auto-style4">
+                        @Html.DisplayFor(modelItem => item.JPName)
+                    </td>
+                    <td>
+
+                        @item.JPStartDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JPStudentLocation)
+                    </td>
+                    <td></td>
+                </tr>
+            }
+
+        </table>
+        <div>
+            @Html.ActionLink("Export Student Email Addresses", "ExportCSV", null, new { @class = "btn btn-primary", @id = "spaceFoot" })
+        </div>
+       
+
+
+    </div>
+
+</div>
+
+

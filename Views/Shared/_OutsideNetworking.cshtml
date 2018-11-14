@@ -1,0 +1,68 @@
+﻿@model IEnumerable<JobPlacementDashboard.Models.JPOutsideNetworking>
+
+@if (User.IsInRole("Admin"))
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+<table class="table">
+    <tr>
+        <th class="sort-button-style">
+            <a onclick="sortPartial('@ViewBag.NameSortParm')">Name</a>
+        </th>
+        <th class="sort-button-style">
+            <a onclick="sortPartial('@ViewBag.PositionSortParm')">Position</a>
+        </th>
+        <th class="sort-button-style">
+            <a onclick="sortPartial('@ViewBag.CompanySortParm')">Company</a>
+        </th>
+        <th class="sort-button-style">
+            <label>LinkedIn</label>
+        </th>
+        <th class="sort-button-style">
+            <a onclick="sortPartial('@ViewBag.LocationSortParm')">Location</a>
+        </th>
+        <th class="sort-button-style">
+            <label>Email</label>
+        </th>
+        <th class="sort-button-style">
+            <a onclick="sortPartial('@ViewBag.StackSortParm')">Stack</a>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            <a href="http://@item.CompanyURL" target="_blank">@Html.DisplayFor(modelItem => item.Company)</a>
+        </td>
+        <td>
+            <a href="http://@item.LinkedIn" target="_blank">LinkedIn</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stack)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OutsideNetworkingID }) 
+            <br />
+            @Html.ActionLink("Details", "Details", new { id=item.OutsideNetworkingID }) 
+            <br />
+            @Html.ActionLink("Delete", "Delete", new { id=item.OutsideNetworkingID })
+        </td>
+    </tr>
+}
+
+</table>

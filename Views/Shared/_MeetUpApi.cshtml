@@ -1,0 +1,80 @@
+﻿@model List<JobPlacementDashboard.Models.JPMeetupEvent>
+
+@{
+    ViewBag.Title = "MeetupAPI";
+}
+
+<div class="meetup-wraper">
+    <div class="MeetupAPI-SideBar">
+        <i class="fa"></i>
+        <h2>MeetupAPI</h2>
+
+        <div class="card">
+            <div class="card-header bg-warning text-center">
+                UPCOMING MEETUPs
+            </div>
+            <div id="events" list-group list-group-flush">
+            </div>
+        </div>
+
+        <div class="resp-table">
+            <table>
+                <tr>
+                    <th></th>
+                    <th class="table-left-pad">Date</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="name"></div>
+                    </td>
+                    <td>
+                        <div class="table-left-pad" id="date"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <i class="fa"></i>        
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        //Main function
+        var loadedEventsFromMeetupApi = true;
+        var upcomingEvents = getAllCurrentGroupsUpcomingEvent();        
+
+        // SEPERATES DATE FROM ARRAY, CREATES NEW ARRAY "DATECOLUMN", AND INSERTS INTO "DATE" CELL
+        var dateColumn = upcomingEvents.map(function (el) {
+            return el.date;
+        })
+        document.getElementById("date").innerHTML = dateColumn.join("<br>");
+
+        linkInsertion();
+        
+        function getAllCurrentGroupsUpcomingEvent() {
+            var allGroupsWithUpcomingEvents = [];
+                @foreach (var item in Model)
+                {
+                    //converting from razer object to js
+                    @:var jsObject = {};
+                    @:jsObject['name'] = "@item.JPEventName";
+                    @:jsObject['link'] = "@item.JPEventLink";
+                    @:jsObject['date'] = "@item.JPEventDate.ToShortDateString()";                          
+                    @:allGroupsWithUpcomingEvents.push(jsObject);                                  
+                }                          
+            return allGroupsWithUpcomingEvents;
+        }
+
+        // CREATES HREF LINK.
+        function linkEmbedder(item, index) {
+            var builtLink = ['<a href="' + item.link + '">' + item.name + '</a><br>'].join("");
+            return builtLink;
+        }
+
+        // INSERTS LINK INTO DOCUMENT
+        function linkInsertion() {
+            document.getElementById("name").innerHTML = upcomingEvents.map(linkEmbedder).join('');
+        }
+    </script>
+   
+</div>
