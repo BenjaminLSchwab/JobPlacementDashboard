@@ -13,19 +13,56 @@ Below are descriptions of the stories I worked on, along with code snippets and 
 
 
 ### Sorting Network Table
-When working on a portion of the reviews page, I ran into a bug that another developer had worked on earlier. Because our development database's do not have links to the review pictures, reviewPicture was coming in as null when trying to load the page and causing the page to break. I had worked around this to complete one of the other stories I described above, but it was apparent that it would need to be actually solved if we were going to do a lot of work on the review page. The fix in place was an if-else statement but I found the page was still breaking because it was not allowing us to call ".Path" on a null value. I changed the if-else statement to a ternary statement with a clarified null check and the page was able to load.
+This page had two tables, one as part of the view, and one was a partial view. My task was to make the table on the partial view sortable by several different catagories. I wanted to do this without reloading the page. 
 
-This page had two tables, one as part of the view, and one was a partial view. My task was to make the 
+       public ActionResult _OutsideNetworking(string sortOrder)
+        {
+            List<JPOutsideNetworking> partialViewList = new List<JPOutsideNetworking>();
+            partialViewList = db.JPOutsideNetworkings.ToList();
 
-    // Before
-    if (reviewPicture.Path == null) {
-        ReviewPicture = null
-    } else {
-        ReviewPicture = reviewPicture.Path
-    }
+            ViewBag.NameSortParm = sortOrder == "studentName" ? "studentName_desc" : "studentName";
+            ViewBag.PositionSortParm = sortOrder == "position" ? "position_desc" : "position";
+            ViewBag.CompanySortParm = sortOrder == "company" ? "company_desc" : "company";
+            ViewBag.LocationSortParm = sortOrder == "location" ? "location_desc" : "location";
+            ViewBag.StackSortParm = sortOrder == "stack" ? "stack_desc" : "stack";
 
-    // After
-    ReviewPicture = (reviewPicture == null) ? ReviewPicture = null : ReviewPicture = reviewPicture.Path;        
+            switch (sortOrder)
+            {
+                default:
+                case "studentName":
+                    partialViewList = partialViewList.OrderBy(x => x.Name).ToList();
+                    break;
+                case "studentName_desc":
+                    partialViewList = partialViewList.OrderByDescending(x => x.Name).ToList();
+                    break;
+                case "position":
+                    partialViewList = partialViewList.OrderBy(x => x.Position).ToList();
+                    break;
+                case "position_desc":
+                    partialViewList = partialViewList.OrderByDescending(x => x.Position).ToList();
+                    break;
+                case "company":
+                    partialViewList = partialViewList.OrderBy(x => x.Company).ToList();
+                    break;
+                case "company_desc":
+                    partialViewList = partialViewList.OrderByDescending(x => x.Company).ToList();
+                    break;
+                case "location":
+                    partialViewList = partialViewList.OrderBy(x => x.Location).ToList();
+                    break;
+                case "location_desc":
+                    partialViewList = partialViewList.OrderByDescending(x => x.Location).ToList();
+                    break;
+                case "stack":
+                    partialViewList = partialViewList.OrderBy(x => x.Stack).ToList();
+                    break;
+                case "stack_desc":
+                    partialViewList = partialViewList.OrderByDescending(x => x.Stack).ToList();
+                    break;
+            }
+
+            return PartialView("_OutsideNetworking", partialViewList);
+        }       
  
  ### Meetup API
 I was tasked with fixing a parial view that displays information from Meetup.com. A previous developer had attempted the story with limited results. The meetup info could only be retrieved once per hour,my solution was to request meetup's info and save the results to a database. Whenever the API denied a request, the controller would use the latest data that had been saved.
