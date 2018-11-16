@@ -7,12 +7,15 @@ Below are descriptions of the stories I worked on, along with code snippets and 
 
 
 ## Back End Stories
-* [Fixing Assignment Bug](#fixing-assignment-bug)
+* [Sorting Network Table](#sorting-network-table)
+* [Meetup API](#meetup-api)
 
 
 
-### Fixing Assignment Bug
+### Sorting Network Table
 When working on a portion of the reviews page, I ran into a bug that another developer had worked on earlier. Because our development database's do not have links to the review pictures, reviewPicture was coming in as null when trying to load the page and causing the page to break. I had worked around this to complete one of the other stories I described above, but it was apparent that it would need to be actually solved if we were going to do a lot of work on the review page. The fix in place was an if-else statement but I found the page was still breaking because it was not allowing us to call ".Path" on a null value. I changed the if-else statement to a ternary statement with a clarified null check and the page was able to load.
+
+This page had two tables, one as part of the view, and one was a partial view. My task was to make the 
 
     // Before
     if (reviewPicture.Path == null) {
@@ -22,7 +25,58 @@ When working on a portion of the reviews page, I ran into a bug that another dev
     }
 
     // After
-    ReviewPicture = (reviewPicture == null) ? ReviewPicture = null : ReviewPicture = reviewPicture.Path;
+    ReviewPicture = (reviewPicture == null) ? ReviewPicture = null : ReviewPicture = reviewPicture.Path;        
+ 
+ ### Meetup API
+I was tasked with fixing a parial view that displays information from Meetup.com. A previous developer had attempted the story with limited results. The meetup info could only be retrieved once per hour, so My solution was to request meetup's info and save the results to a database. Whenever the API denied a request, the controller would use the latest data that had been saved. This also meant I had to make sure the controller filter out events that had already passed. Because multiple meetup groups sometimes post the same event, or would have several entries for a weekly event, I also had to filter duplicate events and display the earliest one.   
+
+    public PartialViewResult _MeetUpApi()
+        {
+            string[] meetupRequestUrls = {...};
+
+            var events = new List<JPMeetupEvent>();
+            try
+            {
+                var responseStrings = new List<string>();
+                foreach (var url in meetupRequestUrls)
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                    request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        responseStrings.Add(reader.ReadToEnd());
+                    }
+                }
+
+                foreach (var str in responseStrings)
+                {
+                    events.AddRange(ConvertMeetupStringToJPMeetupEvents(str));
+                }
+                events = FilterPastEvents(events);
+                events = FilterDuplicateEvents(events);
+
+                //remove old events from table
+                db.JPMeetupEvents.RemoveRange(db.JPMeetupEvents);
+
+                db.JPMeetupEvents.AddRange(events);
+
+                db.SaveChanges();
+            }
+
+            //if there is a web exception, we need to load events from the database instead
+            catch (WebException)
+            {
+                foreach (var meetupEvent in db.JPMeetupEvents)
+                {
+                    events.Add(meetupEvent);
+                }
+                    events = FilterPastEvents(events);
+            }                                   
+            return PartialView("_MeetUpApi", events);
+        }
 
 *Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills](#other-skills-learned), [Page Top](#live-project)*
 
