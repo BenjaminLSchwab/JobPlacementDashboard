@@ -32,7 +32,7 @@ I was tasked with fixing a parial view that displays information from Meetup.com
 
     public PartialViewResult _MeetUpApi()
         {
-            string[] meetupRequestUrls = {...};
+            string[] meetupRequestUrls = {//url's removed for neatness};
 
             var events = new List<JPMeetupEvent>();
             try
