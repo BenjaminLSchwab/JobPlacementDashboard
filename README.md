@@ -28,7 +28,7 @@ This page had two tables, one as part of the view, and one was a partial view. M
     ReviewPicture = (reviewPicture == null) ? ReviewPicture = null : ReviewPicture = reviewPicture.Path;        
  
  ### Meetup API
-I was tasked with fixing a parial view that displays information from Meetup.com. A previous developer had attempted the story with limited results. The meetup info could only be retrieved once per hour, so My solution was to request meetup's info and save the results to a database. Whenever the API denied a request, the controller would use the latest data that had been saved. This also meant I had to make sure the controller filter out events that had already passed. Because multiple meetup groups sometimes post the same event, or would have several entries for a weekly event, I also had to filter duplicate events and display the earliest one.   
+I was tasked with fixing a parial view that displays information from Meetup.com. A previous developer had attempted the story with limited results. The meetup info could only be retrieved once per hour,my solution was to request meetup's info and save the results to a database. Whenever the API denied a request, the controller would use the latest data that had been saved. I also had to make sure the controller filtered out events that had already passed.   
 
     public PartialViewResult _MeetUpApi()
         {
@@ -77,7 +77,9 @@ I was tasked with fixing a parial view that displays information from Meetup.com
             }                                   
             return PartialView("_MeetUpApi", events);
         }
-        
+
+I had to write a helper function to convert the string that comes in from the API to our event model.
+
         List<JPMeetupEvent> ConvertMeetupStringToJPMeetupEvents(string meetup)
         {
             var events = new List<JPMeetupEvent>();
@@ -109,6 +111,8 @@ I was tasked with fixing a parial view that displays information from Meetup.com
 
             return events;
         }
+
+Because multiple meetup groups sometimes post the same event, or would have several entries for a weekly event, I had to filter duplicate events and display the earliest one. 
 
         List<JPMeetupEvent> FilterPastEvents(List<JPMeetupEvent> events)
         {
