@@ -77,6 +77,69 @@ I was tasked with fixing a parial view that displays information from Meetup.com
             }                                   
             return PartialView("_MeetUpApi", events);
         }
+        
+        List<JPMeetupEvent> ConvertMeetupStringToJPMeetupEvents(string meetup)
+        {
+            var events = new List<JPMeetupEvent>();
+            var meetupSB = new StringBuilder(meetup);            
+            while (true)
+            {
+                var meetupEvent = new JPMeetupEvent();
+
+                int nameIndex = meetupSB.ToString().IndexOf("\"name\"");
+                if (nameIndex == -1) break;
+                meetupSB.Remove(0, nameIndex + 8);
+                int commaIndex = meetupSB.ToString().IndexOf(",");
+                meetupEvent.JPEventName = meetupSB.ToString().Substring(0,commaIndex - 1);
+
+                int dateIndex = meetupSB.ToString().IndexOf("\"local_date\"");                
+                meetupSB.Remove(0, dateIndex + 14);
+                commaIndex = meetupSB.ToString().IndexOf(",");
+                var date = DateTime.Parse(meetupSB.ToString().Substring(0, commaIndex - 1));
+                meetupEvent.JPEventDate = date;
+
+                int linkIndex = meetupSB.ToString().IndexOf("\"link\"");              
+                meetupSB.Remove(0, linkIndex + 8);
+                commaIndex = meetupSB.ToString().IndexOf(",");
+                meetupEvent.JPEventLink = meetupSB.ToString().Substring(0, commaIndex - 1);
+
+                events.Add(meetupEvent);
+            }
+
+
+            return events;
+        }
+
+        List<JPMeetupEvent> FilterPastEvents(List<JPMeetupEvent> events)
+        {
+            var filteredList = new List<JPMeetupEvent>();
+
+            foreach (var meetupEvent in events)
+            {
+                if (meetupEvent.JPEventDate.CompareTo(DateTime.Now) >= 0)
+                {
+                    filteredList.Add(meetupEvent);
+                }
+            }
+
+            return filteredList;
+        }
+
+        //will keep the earliest of the duplicates
+        List<JPMeetupEvent> FilterDuplicateEvents(List<JPMeetupEvent> events)
+        {
+            var filteredEvents = new List<JPMeetupEvent>();
+            var eventNames = new List<string>();
+            foreach (var meetupEvent in events)
+            {
+                if (!eventNames.Contains(meetupEvent.JPEventName))
+                {
+                    eventNames.Add(meetupEvent.JPEventName);
+                    filteredEvents.Add(meetupEvent);
+                }
+            }
+            return filteredEvents;
+        }
 
 *Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills](#other-skills-learned), [Page Top](#live-project)*
 
