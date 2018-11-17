@@ -186,10 +186,13 @@ I also had to make sure the controller filtered out events that had already pass
 
 
 ## Front End Stories
-* [Change Button Font Color](#change-button-font-color)
+* [Button Sizing Bug](#button-sizing-bug)
 
-### Change Button Font Color
-This story asked that I update the font color of the button users click to submit reviews for a location they've traveled to. Though this sounds simple, I actually ran into a problem off the bat--the project had some style written in SASS and some in CSS, and there were often several overlapping targets for the same element. This meant the first place I thought to look for the change wasn't right and I had to keep tracing the places where previous developers had targeted the same ID to find what was taking precedence and make my change there. It was actually in the 5th place I looked that I found where the CSS was setting the font color and when I changed it there it finally worked on the page as the story had requested.  
+### Button Sizing Bug
+This story was to fix an issue where buttons on the navbar would get smaller when clicked. It took some time to realize the font size was actually staying the same, and it was the font that was changing.
+
+
+
 *Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills](#other-skills-learned), [Page Top](#live-project)*
 
 ## Other Skills Learned
